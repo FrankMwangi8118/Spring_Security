@@ -25,18 +25,17 @@ public class UserDetails implements UserDetailsService {
                     .password(userObj.getPassword())
                     .roles(getroles(userObj))
                     .build();
+        }else {
+           throw new UsernameNotFoundException("not found");
         }
-        return null;
     }
 
     private String[] getroles(AllUsers userObj) {
-        String roles=userObj.getRoles();
-        if(roles==null || roles.isEmpty()){
-            return new String[]{"ROLE_USER"};
+
+        if(userObj.getRoles()==null){
+            return new String[]{"USER"};
         }
-        return Arrays.stream(roles.split(","))
-                .map(role->"ROLE_"+role.trim())
-                .toArray(String[]::new);
+        return userObj.getRoles().split(",");
 
     }
 }

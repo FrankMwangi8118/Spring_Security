@@ -14,9 +14,8 @@ public class AllUsers {
     private int id;
 
     private String username;
-
     private String password;
-    private String Roles;
+    private String roles;
 
     public String getUsername() {
         return username;
@@ -35,10 +34,10 @@ public class AllUsers {
     }
 
     public String getRoles() {
-        return Roles;
+        return roles;
     }
 
     public void setRoles(String roles) {
-        Roles = roles;
+        this.roles = roles;
     }
 }

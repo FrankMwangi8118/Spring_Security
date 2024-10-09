@@ -7,8 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractAuthenticationFilterConfigurer;
-import org.springframework.security.config.annotation.web.configurers.FormLoginConfigurer;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -26,8 +24,8 @@ public class SecurityConfigarations {
                 .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
                 .authorizeHttpRequests(registry->{
             registry.requestMatchers("/home","/register").permitAll();
-            registry.requestMatchers("/admin/**").hasRole("ADMIN");
-            registry.requestMatchers("/user/**").hasRole("USER");
+            registry.requestMatchers("/admin/**","/admin/home").hasRole("ADMIN");
+            registry.requestMatchers("/user/**","/user/home").hasRole("USER");
         }).build();
     }
 
@@ -36,8 +34,6 @@ public class SecurityConfigarations {
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
-
-
 
     //daoAuthentication
     @Bean
