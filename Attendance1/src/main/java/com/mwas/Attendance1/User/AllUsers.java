@@ -1,4 +1,4 @@
-package com.mwas.Attendance1.Model;
+package com.mwas.Attendance1.User;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,11 +8,13 @@ import jakarta.persistence.Id;
 
 @Entity
 
-public class Users {
+public class AllUsers {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String username;
+
     private String password;
     private String Roles;
 
